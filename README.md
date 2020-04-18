@@ -77,3 +77,14 @@ The dataset can be evaluated using the file *evaluate.py* can be used, which pro
     loss      The binary loss of the model's predictions with the actual data.
     accuracy  Percentage of images classified correctly.
     recall    Ratio of true positives to the sum of true positives and false negatives
+
+### Predicting:
+To make predictions on a dataset, first place all the images you want to test in a folder.
+
+Then, the file *test.py* can be used to make predictions with the following arguments:
+
+    --img_path   Path of the directory containing the images.
+    --model_path Path of model JSON file.
+    --weights    Path of model weights file.
+
+The predictions will be stored in a csv file named *predictions.csv*
