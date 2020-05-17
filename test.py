@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import argparse
 from keras.models import model_from_json
-from keras.applications.inception_resnet_v2 import InceptionResNetV2, preprocess_input
+from keras.applications.vgg19 import VGG19, preprocess_input
 from keras.preprocessing import image
 
 def convert(x):
@@ -14,7 +14,7 @@ def getImages(image_list, path):
     images = []
     count = 0
     for img in image_list:
-        im = image.load_img(path+'/'+img, target_size=(299,299))
+        im = image.load_img(path+'/'+img, target_size=(224,224))
         im = image.img_to_array(im)
         im = preprocess_input(im)
         images.append(im)

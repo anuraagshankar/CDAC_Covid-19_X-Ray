@@ -1,18 +1,18 @@
 import os
 from keras.models import Sequential
 from keras.layers import Dense, Flatten
-from keras.applications.inception_resnet_v2 import InceptionResNetV2, preprocess_input
+from keras.applications.vgg19 import VGG19, preprocess_input
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks.callbacks import EarlyStopping, ModelCheckpoint
 import numpy as np
 import argparse
 
-image_shape = 299 # Original size of the InceptionResnetV2 model
+image_shape = 224 # Original size of the VGG19 model
 num_classes = 2 # Covid, Non_Covid
 
 def model_architecture():
   model = Sequential()
-  resnet_layer = InceptionResNetV2(include_top = False, weights = 'imagenet', input_shape = (image_shape,image_shape,3))
+  resnet_layer = VGG19(include_top = False, weights = 'imagenet', input_shape = (image_shape,image_shape,3))
   model.add(resnet_layer)
   model.add(Flatten())
   model.add(Dense(512, activation = 'relu'))
@@ -50,9 +50,7 @@ def train(args):
         early_stopping = EarlyStopping(patience = 2, restore_best_weights = True)
         callbacks.append(early_stopping)
 
-    steps = 375//batch_size
-
-    model.fit_generator(train_it, steps_per_epoch=steps, epochs=epochs, callbacks=callbacks, validation_data=val_it, validation_steps=3)
+    model.fit_generator(train_it, epochs=epochs, callbacks=callbacks, validation_data=val_it)
 
     os.mkdir('model')
     model_json = model.to_json()

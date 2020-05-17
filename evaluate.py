@@ -1,13 +1,13 @@
 from keras.preprocessing.image import ImageDataGenerator
-from keras.applications.inception_resnet_v2 import InceptionResNetV2, preprocess_input
+from keras.applications.vgg19 import VGG19, preprocess_input
 from keras.models import model_from_json
 import numpy as np
 import os
 import argparse
 
-model_path = 'inc_res_v2_100acc/model.json'
-model_weights = 'inc_res_v2_100acc/model.hdf5'
-path = '2_way_classification/test'
+model_path = 'model_data/model.json'
+model_weights = 'model_data/model.hdf5'
+path = 'dataset/test'
 
 covid_count = len(os.listdir(path+'/covid'))
 non_covid_count = len(os.listdir(path+'/non_covid'))
@@ -45,7 +45,7 @@ def predict():
     model.load_weights(model_weights)
 
     data_gen = ImageDataGenerator(preprocessing_function=preprocess_input)
-    test_it = data_gen.flow_from_directory(path, target_size=(299,299), batch_size=16, shuffle=False)
+    test_it = data_gen.flow_from_directory(path, target_size=(224,224), batch_size=16, shuffle=False)
 
     model.compile(optimizer = 'adam', loss = 'categorical_crossentropy', metrics = ['accuracy'])
     

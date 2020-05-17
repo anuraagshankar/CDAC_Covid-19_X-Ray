@@ -5,8 +5,8 @@
     Therefore it is advised to use the dataset directly. This code is provided for reference.
     All images used in the dataset will be stored in the folders 'covid_images' and 'non_covid_images'.
     Ideal splits:
-        Covid - Total:164 => Train: 125, Val: 19, Test: 20
-        Non-Covid - Total:350 => Train: 250, Val: 40, Test: 60
+        Covid - Total:224 => Train: 125, Val: 47, Test: 47
+        Non-Covid - Total:367 => Train: 250, Val: 57, Test: 60
 """
 import os
 import pandas as pd
@@ -37,9 +37,9 @@ def generateCovidDataset(covid_path):
     # If only clear images are kept, it leads to a split of 125,19,20 for train,val,test.
     image_names = os.listdir('covid_images')
     
-    test_images = image_names[:20]
-    val_images = image_names[20:39]
-    train_images = image_names[39:]
+    test_images = image_names[:47]
+    val_images = image_names[47:94]
+    train_images = image_names[94:]
     
     os.mkdir('data')
     os.mkdir('data/train')
