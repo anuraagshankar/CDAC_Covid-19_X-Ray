@@ -39,7 +39,7 @@ Examples:
 <img src="standby/non_covid1.jpeg" height=250 width=250>   <img src="standby/non_covid2.jpeg" height=250 width=250>
 
 The dataset has been split in the following fashion:
-1. covid     - 224 images : 125 train, 47 validation, 47 test
+1. covid     - 219 images : 125 train, 47 validation, 47 test
 2. non-covid - 367 images : 250 train, 57 validation, 60 test
 
 The dataset is available [here](https://drive.google.com/open?id=1T5KHnOoKvsWXHbMlcTe8lcVWtdIqg6Ig).
